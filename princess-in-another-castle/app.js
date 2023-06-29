@@ -13,7 +13,8 @@ class Player {
         namePicked = this.name
     }
     gotHit() {
-        
+        console.log(`
+        You got hit!`)
         if (this.status === "Small") {
                 console.log(`
         Game over! You are dead!
@@ -46,7 +47,10 @@ class Player {
         }
         // (Statuses go from "Small" to "Big" to "Powered Up". If you are Powered Up and it hits this function, you get a star)
     }
+
     addcoin() {
+        console.log(`
+        Got a coin!`)
         this.totalCoins ++
         
     }
