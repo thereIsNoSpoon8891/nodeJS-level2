@@ -1,7 +1,21 @@
 //////////////////////////////////// Princess in another castle /////////////////////////////////////////
+const readline = require('readline-sync')
+
+let selectedName;
 
 let intervalId;
 
+const names = ["Mario", "Luigi"]
+
+while(!selectedName){
+    const index = readline.keyInSelect(names, 'Please pick your Hero:');
+    if (index === -1){
+        console.log('BYE!')
+        process.exit(0)
+    } else {
+        selectedName = names[index]
+    }
+}
 class Player {
     constructor(name, totalCoins, status, hasStar) {
         this.name = name
@@ -10,7 +24,7 @@ class Player {
         this.hasStar = hasStar
 }
     setName(namePicked) {
-        namePicked = this.name
+        this.name = namePicked
     }
     gotHit() {
         console.log(`
@@ -45,7 +59,8 @@ class Player {
         } else if (this.status === "Small") {
             this.status = "Big"
         }
-        // (Statuses go from "Small" to "Big" to "Powered Up". If you are Powered Up and it hits this function, you get a star)
+        // (Statuses go from "Small" to "Big" to "Powered Up".
+        //  If you are Powered Up and it hits this function, you get a star)
     }
 
     addcoin() {
@@ -61,7 +76,7 @@ class Player {
         Total coins: ${this.totalCoins}`)
     }
 }
-const mario = new Player("Mario", 0, "Powered up", false)
+const mario = new Player(selectedName, 0, "Powered up", false)
 
 const randomRange = () => {
     mario.print()
@@ -73,7 +88,6 @@ const randomRange = () => {
     } else if (random === 2) {
         mario.addcoin()
     }
-  
 }
 
 intervalId = setInterval(randomRange, 1500) 
